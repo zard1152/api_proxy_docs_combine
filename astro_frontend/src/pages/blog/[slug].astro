@@ -1,10 +1,9 @@
 ---
-import fetchApi from '../lib/strapi';
-import type Article from '../interfaces/article';
+import fetchApi from '../../lib/strapi';
+import type Article from '../../interfaces/article';
 
 const articles = await fetchApi<Article[]>({
-  endpoint: 'articles',
-  wrappedByKey: 'data',
+  endpoint: 'articles'
 });
 ---
 
@@ -20,12 +19,12 @@ const articles = await fetchApi<Article[]>({
         {
           articles.map((article) => (
             <li>
-              {article.attributes.slug ? (
-                <a href={`/blog/${article.attributes.slug}/`}>
-                  {article.attributes.title || 'Untitled'}
+              {article.slug ? (
+                <a href={`/blog/${article.slug}/`}>
+                  {article.title || 'Untitled'}
                 </a>
               ) : (
-                <span>{article.attributes.title || 'Untitled'} (Missing slug)</span>
+                <span>{article.title || 'Untitled'} (Missing slug)</span>
               )}
             </li>
           ))

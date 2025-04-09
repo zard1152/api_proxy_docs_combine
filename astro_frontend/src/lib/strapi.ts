@@ -1,3 +1,5 @@
+import type { StrapiResponse } from '../interfaces/article';
+
 interface Props {
   endpoint: string;
   query?: Record<string, string>;
@@ -5,14 +7,6 @@ interface Props {
   wrappedByList?: boolean;
 }
 
-/**
- * Fetches data from the Strapi API
- * @param endpoint - The endpoint to fetch from
- * @param query - The query parameters to add to the url
- * @param wrappedByKey - The key to unwrap the response from
- * @param wrappedByList - If the response is a list, unwrap it
- * @returns
- */
 export default async function fetchApi<T>({
   endpoint,
   query,
@@ -30,16 +24,15 @@ export default async function fetchApi<T>({
       url.searchParams.append(key, value);
     });
   }
+
   const res = await fetch(url.toString());
-  let data = await res.json();
+  const response = await res.json() as StrapiResponse<T>;
 
-  if (wrappedByKey) {
-    data = data[wrappedByKey];
-  }
+  // Transform the response to match the expected format
+  const transformedData = response.data.map(item => ({
+    id: item.id,
+    ...item.attributes
+  }));
 
-  if (wrappedByList) {
-    data = data[0];
-  }
-
-  return data as T;
+  return (wrappedByList ? transformedData[0] : transformedData) as T;
 }
