@@ -1,5 +1,6 @@
 export default interface Article {
   id: number;
+  attributes: {
     title: string;
     description: string;
     content: string;
@@ -7,4 +8,12 @@ export default interface Article {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
+    image?: {
+      data?: {
+        attributes: {
+          url: string;
+        };
+      };
+    };
+  };
 }
