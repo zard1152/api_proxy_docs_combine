@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "apis",
+  "info": {
+    "singularName": "api",
+    "pluralName": "apis",
+    "displayName": "API",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "tittle": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.rich-text",
+        "shared.slider",
+        "shared.seo",
+        "shared.quote",
+        "shared.media"
+      ]
+    }
+  }
+}

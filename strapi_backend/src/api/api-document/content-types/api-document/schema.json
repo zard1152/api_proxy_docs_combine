@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "api_documents",
+  "info": {
+    "singularName": "api-document",
+    "pluralName": "api-documents",
+    "displayName": "API-Document",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "slug": {
+      "type": "text",
+      "required": true,
+      "default": "undefined-name",
+      "unique": true
+    },
+    "tittle": {
+      "type": "string"
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "category": {
+      "type": "text"
+    },
+    "content_markdown": {
+      "type": "richtext"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "order": {
+      "type": "biginteger"
+    }
+  }
+}
